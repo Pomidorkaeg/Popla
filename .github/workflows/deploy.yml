@@ -38,8 +38,8 @@ jobs:
         with:
           path: ./dist  # Adjust this path according to your build output directory
           
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4  # Updated to v4
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4  # Updated from v3 to v4
         with:
           name: build-artifacts
           path: ./dist  # Adjust this path according to your build output directory
