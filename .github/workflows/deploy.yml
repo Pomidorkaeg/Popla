@@ -1,9 +1,8 @@
-
-name: Deploy to GitHub Pages
+name: Deploy
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   workflow_dispatch:
 
 permissions:
@@ -19,23 +18,31 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup Node
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "18"
-          cache: 'npm'
-      - name: Install dependencies
-        run: npm ci
-      - name: Build
-        run: npm run build
-      - name: Setup Pages
+          node-version: '18'
+          
+      - name: Configure Pages
         uses: actions/configure-pages@v3
+        
+      - name: Build
+        run: |
+          npm ci
+          npm run build
+          
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: './dist'
+          path: ./dist  # Adjust this path according to your build output directory
+          
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4  # Updated to v4
+        with:
+          name: build-artifacts
+          path: ./dist  # Adjust this path according to your build output directory
           
   deploy:
     environment:
