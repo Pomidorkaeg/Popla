@@ -19,7 +19,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+        with:
+          submodules: false  # Disable submodule checking
+          
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
