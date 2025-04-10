@@ -34,12 +34,7 @@ jobs:
           npm run build
           
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: ./dist  # Adjust this path according to your build output directory
-          
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4  # Updated from v3 to v4
+        uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
           path: ./dist  # Adjust this path according to your build output directory
